@@ -4,7 +4,7 @@
 echo "Waiting for LocalStack to be ready..."
 TIMEOUT=180
 ELAPSED=0
-until curl -s http://localhost:4566/_localstack/health | tee /tmp/ls_health | grep -q '"sqs": "running"'; do
+until curl -s http://localhost:4566/_localstack/health | tee /tmp/ls_health | grep -qE '"sqs": "(running|available)"'; do
     sleep 1
     ELAPSED=$((ELAPSED+1))
     if [ $ELAPSED -ge $TIMEOUT ]; then
