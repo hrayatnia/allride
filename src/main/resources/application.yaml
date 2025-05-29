@@ -3,26 +3,22 @@ ktor:
         modules:
             - me.rayatnia.ApplicationKt.module
     deployment:
-        port: 8080
-ktor:
-  kafka:
-    schema.registry.url:
-      - "SCHEMA_REGISTRY_URL"
-    common:
-      bootstrap.servers:
-        - "BOOTSTRAP_SERVERS"
-      # Additional attributes
-    admin:
-    # Additional attributes
-    consumer:
-      group.id: "my-group-id"
-      # Additional attributes
-    producer:
-      client.id: "my-client-id"
-      # Additional attributes
-    topics:
-      - name: my-topic
-        partitions: 1
-        configs:
-          message.timestamp.type: CreateTime
-          # Additional attributes
+        port: ${PORT:8080}
+
+database:
+    url: "jdbc:postgresql://${POSTGRES_URL}/allride"
+    driver: "org.postgresql.Driver"
+    user: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:AllRide2024!}
+
+cache:
+    memcached:
+        endpoint: ${MEMCACHED_ENDPOINT:localhost:11211}
+        connectionPoolSize: 2
+        operationTimeout: 3000
+
+aws:
+    region: ${AWS_REGION:us-east-1}
+    sqs:
+        mainQueueUrl: ${SQS_QUEUE_URL}
+        dlqUrl: ${SQS_DLQ_URL}

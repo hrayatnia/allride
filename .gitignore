@@ -47,9 +47,12 @@ logs/
 *.log
 
 # Docker
-Dockerfile
-.dockerignore
-docker-compose.yml
+# Dockerfile
+# .dockerignore
+# docker-compose.yml
+# .docker/
+# docker-compose.override.yml
+# postgres_data/
 
 # Secrets and sensitive data
 *.env
@@ -79,3 +82,17 @@ application-local.*
 
 # Rider
 .idea.rider*/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!terraform.tfvars.example
+.terraformrc
+terraform.rc
+crash.log
+
+# LocalStack
+.localstack/
+localstack/data/
