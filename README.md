@@ -14,7 +14,7 @@ Here's a list of features included in this project:
 
 | Name                                                 | Description                            |
 | ------------------------------------------------------|---------------------------------------- |
-| [Kafka](https://start.ktor.io/p/ktor-server-kafka)   | Adds Kafka support to your application |
+| [AWS SQS](https://aws.amazon.com/sqs/)               | Message queuing service for decoupled communication |
 | [Call Logging](https://start.ktor.io/p/call-logging) | Logs client requests                   |
 | [Routing](https://start.ktor.io/p/routing)           | Provides a structured routing DSL      |
 | [Swagger](https://start.ktor.io/p/swagger)           | Serves Swagger UI for your project     |

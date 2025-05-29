@@ -11,7 +11,6 @@ import io.github.flaxoos.ktor.server.plugins.kafka.consumerRecordHandler
 import io.github.flaxoos.ktor.server.plugins.kafka.producer
 import io.github.flaxoos.ktor.server.plugins.kafka.registerSchemas
 import io.github.flaxoos.ktor.server.plugins.kafka.topic
-import io.ktor.client.HttpClient
 import io.ktor.server.application.*
 import io.ktor.server.plugins.calllogging.*
 import io.ktor.server.plugins.swagger.*
