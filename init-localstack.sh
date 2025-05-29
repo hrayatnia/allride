@@ -1,9 +1,17 @@
 #!/bin/bash
 
-# Wait for LocalStack to be ready
+# Wait for LocalStack to be ready (timeout after 180s)
 echo "Waiting for LocalStack to be ready..."
-until curl -s http://localhost:4566/_localstack/health | grep -q "\"sqs\": \"running\""; do
+TIMEOUT=180
+ELAPSED=0
+until curl -s http://localhost:4566/_localstack/health | tee /tmp/ls_health | grep -q '"sqs": "running"'; do
     sleep 1
+    ELAPSED=$((ELAPSED+1))
+    if [ $ELAPSED -ge $TIMEOUT ]; then
+        echo "LocalStack did not become ready in $TIMEOUT seconds. Health response was:"
+        cat /tmp/ls_health
+        exit 1
+    fi
 done
 
 # Configure AWS CLI for LocalStack

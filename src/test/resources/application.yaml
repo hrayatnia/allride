@@ -1,0 +1,21 @@
+ktor:
+    application:
+        modules:
+            - me.rayatnia.ApplicationKt.module
+    deployment:
+        port: 8080
+        
+database:
+    url: "jdbc:postgresql://localhost:5432/allride"
+    driver: "org.postgresql.Driver"
+    user: "postgres"
+    password: "AllRide2024!"
+
+memcached:
+    endpoint: "localhost:11211"
+
+aws:
+    region: "us-east-1"
+    sqs:
+        queue_url: "http://localhost:4566/000000000000/allride-main-queue"
+        dlq_url: "http://localhost:4566/000000000000/allride-dlq" 

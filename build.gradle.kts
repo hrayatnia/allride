@@ -1,9 +1,8 @@
 plugins {
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.ktor)
-    id("org.jetbrains.dokka") version "1.9.10"
+    kotlin("jvm") version "1.9.21"
+    kotlin("plugin.serialization") version "1.9.21"
+    id("io.ktor.plugin") version "2.3.8"
     application
-    kotlin("plugin.serialization") version "1.9.22"
 }
 
 group = "me.rayatnia"
@@ -15,69 +14,66 @@ application {
 
 repositories {
     mavenCentral()
-    maven { url = uri("https://jitpack.io") }
-    maven {
-        url = uri("https://packages.confluent.io/maven/")
+}
+
+val ktorVersion = "2.3.8"
+val kotlinVersion = "1.9.21"
+val logbackVersion = "1.4.14"
+val awsSdkVersion = "2.24.12"
+val opencsvVersion = "5.9"
+val mockkVersion = "1.13.9"
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
 
-val exposedVersion = "0.46.0"
-val postgresVersion = "42.7.1"
-val hikariVersion = "5.1.0"
-val awsSdkVersion = "2.24.12"
-val xmemcachedVersion = "2.4.8"
-val ktorVersion = "2.3.7"
-val junitVersion = "5.12.1"
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = "17"
+        freeCompilerArgs = listOf("-Xjsr305=strict")
+    }
+}
 
 dependencies {
-    // Ktor Core
-    implementation(libs.ktor.server.call.logging)
-    implementation(libs.ktor.server.core)
-    implementation(libs.ktor.server.swagger)
-    implementation(libs.ktor.server.netty)
-    implementation(libs.ktor.server.config.yaml)
-    implementation(libs.ktor.server.kafka)
+    // Ktor Server
+    implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-netty-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-status-pages-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-default-headers-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-host-common-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-auth-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-auth-jwt-jvm:$ktorVersion")
     
-    // Serialization
-    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-    implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
+    // Ktor Client
+    implementation("io.ktor:ktor-client-core-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-client-cio-jvm:$ktorVersion")
     
-    // AWS SDK
+    // Ktor Serialization
+    implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktorVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+    
+    // AWS
     implementation(platform("software.amazon.awssdk:bom:$awsSdkVersion"))
     implementation("software.amazon.awssdk:sqs")
     
-    // Database
-    implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
-    implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
-    implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
-    implementation("org.jetbrains.exposed:exposed-java-time:$exposedVersion")
-    implementation("org.postgresql:postgresql:$postgresVersion")
-    implementation("com.zaxxer:HikariCP:$hikariVersion")
-    
-    // Memcached
-    implementation("com.googlecode.xmemcached:xmemcached:$xmemcachedVersion")
+    // CSV Processing
+    implementation("com.opencsv:opencsv:$opencsvVersion")
     
     // Logging
-    implementation(libs.logback.classic)
+    implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    implementation("org.slf4j:slf4j-api:2.0.11")
     
     // Testing
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:2.1.10")
+    testImplementation("io.ktor:ktor-server-tests-jvm:$ktorVersion")
     testImplementation("io.ktor:ktor-server-test-host:$ktorVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
-    testImplementation("io.mockk:mockk:1.13.9")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
-    
-    // Add these explicit dependencies to ensure version alignment
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.12.1")
-    testRuntimeOnly("org.junit.platform:junit-platform-engine:1.12.1")
-    testRuntimeOnly("org.junit.platform:junit-platform-commons:1.12.1")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
+    testImplementation("io.mockk:mockk:$mockkVersion")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 }
 
-tasks.test {
+tasks.withType<Test> {
     useJUnitPlatform()
-}
-
-// Configure distribution
-tasks.installDist {
-    destinationDir = file("$buildDir/install/allride")
 }
