@@ -1,0 +1,81 @@
+# Gradle
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# VS Code
+.vscode/
+
+# Eclipse
+.classpath
+.project
+.settings/
+.factorypath
+
+# NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# STS
+.apt_generated
+.springBeans
+.sts4-cache
+
+# Mac
+.DS_Store
+
+# Build artifacts
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Logs
+logs/
+*.log
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Secrets and sensitive data
+*.env
+*.pem
+*.key
+
+# Local configuration
+application-local.*
+
+# OS generated files
+*~
+.#*
+*.swp
+*.swo
+
+# Compiled files
+*.class
+*.obj
+*.o
+*.pyc
+*.pyo
+
+# Test results
+**/target/test-results/
+**/build/test-results/
+**/build/reports/
+
+# Rider
+.idea.rider*/
