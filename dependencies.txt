@@ -1,0 +1,530 @@
+
+> Task :dependencies
+
+------------------------------------------------------------
+Root project 'allride'
+------------------------------------------------------------
+
+compileClasspath - Compile classpath for null/main.
++--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21
+|    +--- org.jetbrains:annotations:13.0 -> 23.0.0
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0 -> 1.8.22 (c)
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0 -> 1.8.22 (c)
+|    \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.9.21 (c)
++--- io.ktor:ktor-bom:2.3.8
+|    +--- io.ktor:ktor-client-cio-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-client-core-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-server-core-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-server-host-common-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-server-netty-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-server-auth-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-server-auth-jwt-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-server-content-negotiation-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-server-default-headers-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-server-status-pages-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-serialization-kotlinx-json-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-utils:2.3.8 (c)
+|    +--- io.ktor:ktor-http:2.3.8 (c)
+|    +--- io.ktor:ktor-serialization:2.3.8 (c)
+|    +--- io.ktor:ktor-events:2.3.8 (c)
+|    +--- io.ktor:ktor-server-host-common:2.3.8 (c)
+|    +--- io.ktor:ktor-server-core:2.3.8 (c)
+|    +--- io.ktor:ktor-http-cio:2.3.8 (c)
+|    +--- io.ktor:ktor-websockets:2.3.8 (c)
+|    +--- io.ktor:ktor-client-core:2.3.8 (c)
+|    +--- io.ktor:ktor-server-sessions:2.3.8 (c)
+|    +--- io.ktor:ktor-server-auth:2.3.8 (c)
+|    +--- io.ktor:ktor-websocket-serialization:2.3.8 (c)
+|    +--- io.ktor:ktor-network-tls:2.3.8 (c)
+|    +--- io.ktor:ktor-serialization-kotlinx:2.3.8 (c)
+|    +--- io.ktor:ktor-utils-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-http-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-serialization-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-events-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-http-cio-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-websockets-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-server-sessions-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-websocket-serialization-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-network-tls-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-serialization-kotlinx-jvm:2.3.8 (c)
+|    +--- io.ktor:ktor-io:2.3.8 (c)
+|    +--- io.ktor:ktor-network:2.3.8 (c)
+|    +--- io.ktor:ktor-io-jvm:2.3.8 (c)
+|    \--- io.ktor:ktor-network-jvm:2.3.8 (c)
++--- io.ktor:ktor-server-core-jvm:2.3.8
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22
+|    |    \--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 1.9.21 (*)
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22
+|    |    +--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 1.9.21 (*)
+|    |    \--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1
+|    |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1
+|    |    |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.1
+|    |    |         +--- org.jetbrains:annotations:23.0.0
+|    |    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.7.1
+|    |    |         |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.1 (c)
+|    |    |         |    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (c)
+|    |    |         |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (c)
+|    |    |         \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.20 -> 1.9.21
+|    |    |              \--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21 (*)
+|    |    \--- org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.7.1 (*)
+|    +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    +--- com.typesafe:config:1.4.3
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
+|    +--- io.ktor:ktor-utils:2.3.8
+|    |    \--- io.ktor:ktor-utils-jvm:2.3.8
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    |         +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    |         +--- io.ktor:ktor-io:2.3.8
+|    |         |    \--- io.ktor:ktor-io-jvm:2.3.8
+|    |         |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    |         |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    |         |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    |         |         +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    |         |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    |         |         \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
+|    |         \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
+|    +--- io.ktor:ktor-http:2.3.8
+|    |    \--- io.ktor:ktor-http-jvm:2.3.8
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    |         +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    |         +--- io.ktor:ktor-utils:2.3.8 (*)
+|    |         \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
+|    +--- io.ktor:ktor-serialization:2.3.8
+|    |    \--- io.ktor:ktor-serialization-jvm:2.3.8
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    |         +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    |         +--- io.ktor:ktor-http:2.3.8 (*)
+|    |         +--- io.ktor:ktor-websockets:2.3.8
+|    |         |    \--- io.ktor:ktor-websockets-jvm:2.3.8
+|    |         |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    |         |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    |         |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    |         |         +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    |         |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    |         |         +--- io.ktor:ktor-http:2.3.8 (*)
+|    |         |         \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
+|    |         \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
+|    +--- io.ktor:ktor-events:2.3.8
+|    |    \--- io.ktor:ktor-events-jvm:2.3.8
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    |         +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    |         +--- io.ktor:ktor-http:2.3.8 (*)
+|    |         +--- io.ktor:ktor-utils:2.3.8 (*)
+|    |         \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
+|    \--- org.jetbrains.kotlin:kotlin-reflect:1.8.22
+|         \--- org.jetbrains.kotlin:kotlin-stdlib:1.8.22 -> 1.9.21 (*)
++--- io.ktor:ktor-server-netty-jvm:2.3.8
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    +--- io.ktor:ktor-server-host-common:2.3.8
+|    |    \--- io.ktor:ktor-server-host-common-jvm:2.3.8
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    |         +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
+|    |         +--- io.ktor:ktor-server-core:2.3.8
+|    |         |    \--- io.ktor:ktor-server-core-jvm:2.3.8 (*)
+|    |         +--- io.ktor:ktor-http-cio:2.3.8
+|    |         |    \--- io.ktor:ktor-http-cio-jvm:2.3.8
+|    |         |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    |         |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    |         |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    |         |         +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    |         |         +--- io.ktor:ktor-network:2.3.8
+|    |         |         |    \--- io.ktor:ktor-network-jvm:2.3.8
+|    |         |         |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    |         |         |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    |         |         |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    |         |         |         +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    |         |         |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    |         |         |         +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
+|    |         |         |         \--- io.ktor:ktor-utils:2.3.8 (*)
+|    |         |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    |         |         +--- io.ktor:ktor-http:2.3.8 (*)
+|    |         |         \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
+|    |         \--- io.ktor:ktor-websockets:2.3.8 (*)
+|    +--- io.netty:netty-codec-http2:4.1.106.Final
+|    |    +--- io.netty:netty-common:4.1.106.Final
+|    |    +--- io.netty:netty-buffer:4.1.106.Final
+|    |    |    \--- io.netty:netty-common:4.1.106.Final
+|    |    +--- io.netty:netty-transport:4.1.106.Final
+|    |    |    +--- io.netty:netty-common:4.1.106.Final
+|    |    |    +--- io.netty:netty-buffer:4.1.106.Final (*)
+|    |    |    \--- io.netty:netty-resolver:4.1.106.Final
+|    |    |         \--- io.netty:netty-common:4.1.106.Final
+|    |    +--- io.netty:netty-codec:4.1.106.Final
+|    |    |    +--- io.netty:netty-common:4.1.106.Final
+|    |    |    +--- io.netty:netty-buffer:4.1.106.Final (*)
+|    |    |    \--- io.netty:netty-transport:4.1.106.Final (*)
+|    |    +--- io.netty:netty-handler:4.1.106.Final
+|    |    |    +--- io.netty:netty-common:4.1.106.Final
+|    |    |    +--- io.netty:netty-resolver:4.1.106.Final (*)
+|    |    |    +--- io.netty:netty-buffer:4.1.106.Final (*)
+|    |    |    +--- io.netty:netty-transport:4.1.106.Final (*)
+|    |    |    +--- io.netty:netty-transport-native-unix-common:4.1.106.Final
+|    |    |    |    +--- io.netty:netty-common:4.1.106.Final
+|    |    |    |    +--- io.netty:netty-buffer:4.1.106.Final (*)
+|    |    |    |    \--- io.netty:netty-transport:4.1.106.Final (*)
+|    |    |    \--- io.netty:netty-codec:4.1.106.Final (*)
+|    |    \--- io.netty:netty-codec-http:4.1.106.Final
+|    |         +--- io.netty:netty-common:4.1.106.Final
+|    |         +--- io.netty:netty-buffer:4.1.106.Final (*)
+|    |         +--- io.netty:netty-transport:4.1.106.Final (*)
+|    |         +--- io.netty:netty-codec:4.1.106.Final (*)
+|    |         \--- io.netty:netty-handler:4.1.106.Final (*)
+|    +--- org.eclipse.jetty.alpn:alpn-api:1.1.3.v20160715
+|    +--- io.netty:netty-transport-native-kqueue:4.1.106.Final
+|    |    +--- io.netty:netty-common:4.1.106.Final
+|    |    +--- io.netty:netty-buffer:4.1.106.Final (*)
+|    |    +--- io.netty:netty-transport:4.1.106.Final (*)
+|    |    +--- io.netty:netty-transport-native-unix-common:4.1.106.Final (*)
+|    |    \--- io.netty:netty-transport-classes-kqueue:4.1.106.Final
+|    |         +--- io.netty:netty-common:4.1.106.Final
+|    |         +--- io.netty:netty-buffer:4.1.106.Final (*)
+|    |         +--- io.netty:netty-transport:4.1.106.Final (*)
+|    |         \--- io.netty:netty-transport-native-unix-common:4.1.106.Final (*)
+|    +--- io.netty:netty-transport-native-epoll:4.1.106.Final
+|    |    +--- io.netty:netty-common:4.1.106.Final
+|    |    +--- io.netty:netty-buffer:4.1.106.Final (*)
+|    |    +--- io.netty:netty-transport:4.1.106.Final (*)
+|    |    +--- io.netty:netty-transport-native-unix-common:4.1.106.Final (*)
+|    |    \--- io.netty:netty-transport-classes-epoll:4.1.106.Final
+|    |         +--- io.netty:netty-common:4.1.106.Final
+|    |         +--- io.netty:netty-buffer:4.1.106.Final (*)
+|    |         +--- io.netty:netty-transport:4.1.106.Final (*)
+|    |         \--- io.netty:netty-transport-native-unix-common:4.1.106.Final (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
++--- io.ktor:ktor-server-content-negotiation-jvm:2.3.8
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    +--- io.ktor:ktor-server-core:2.3.8 (*)
+|    \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
++--- io.ktor:ktor-server-status-pages-jvm:2.3.8
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    +--- io.ktor:ktor-server-core:2.3.8 (*)
+|    \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
++--- io.ktor:ktor-server-default-headers-jvm:2.3.8
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    +--- io.ktor:ktor-server-core:2.3.8 (*)
+|    \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
++--- io.ktor:ktor-server-host-common-jvm:2.3.8 (*)
++--- io.ktor:ktor-server-auth-jvm:2.3.8
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    +--- io.ktor:ktor-server-core:2.3.8 (*)
+|    +--- io.ktor:ktor-client-core:2.3.8
+|    |    \--- io.ktor:ktor-client-core-jvm:2.3.8
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    |         +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    |         +--- io.ktor:ktor-http:2.3.8 (*)
+|    |         +--- io.ktor:ktor-events:2.3.8 (*)
+|    |         +--- io.ktor:ktor-websocket-serialization:2.3.8
+|    |         |    \--- io.ktor:ktor-websocket-serialization-jvm:2.3.8
+|    |         |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    |         |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    |         |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    |         |         +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    |         |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    |         |         +--- io.ktor:ktor-http:2.3.8 (*)
+|    |         |         +--- io.ktor:ktor-serialization:2.3.8 (*)
+|    |         |         \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
+|    |         \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
+|    +--- io.ktor:ktor-server-sessions:2.3.8
+|    |    \--- io.ktor:ktor-server-sessions-jvm:2.3.8
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    |         +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    |         +--- io.ktor:ktor-server-core:2.3.8 (*)
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
+|    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.5.1 -> 1.6.2
+|    |         |    \--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.6.2
+|    |         |         +--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21 (*)
+|    |         |         +--- org.jetbrains.kotlinx:kotlinx-serialization-bom:1.6.2
+|    |         |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.2 (c)
+|    |         |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.6.2 (c)
+|    |         |         |    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2 (c)
+|    |         |         |    \--- org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.6.2 (c)
+|    |         |         \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.9.21 (*)
+|    |         \--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1 -> 1.6.2
+|    |              \--- org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.6.2
+|    |                   +--- org.jetbrains.kotlin:kotlin-stdlib:1.9.21 (*)
+|    |                   +--- org.jetbrains.kotlinx:kotlinx-serialization-bom:1.6.2 (*)
+|    |                   +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.9.21 (*)
+|    |                   \--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.2 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1 -> 1.6.2 (*)
+|    \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
++--- io.ktor:ktor-server-auth-jwt-jvm:2.3.8
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    +--- io.ktor:ktor-server-auth:2.3.8
+|    |    \--- io.ktor:ktor-server-auth-jvm:2.3.8 (*)
+|    +--- com.auth0:java-jwt:4.4.0
+|    +--- com.auth0:jwks-rsa:0.22.1
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    +--- io.ktor:ktor-server-core:2.3.8 (*)
+|    \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
++--- io.ktor:ktor-client-core-jvm:2.3.8 (*)
++--- io.ktor:ktor-client-cio-jvm:2.3.8
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    +--- io.ktor:ktor-client-core:2.3.8 (*)
+|    +--- io.ktor:ktor-http-cio:2.3.8 (*)
+|    +--- io.ktor:ktor-websockets:2.3.8 (*)
+|    +--- io.ktor:ktor-network-tls:2.3.8
+|    |    \--- io.ktor:ktor-network-tls-jvm:2.3.8
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    |         +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
+|    |         +--- io.ktor:ktor-http:2.3.8 (*)
+|    |         +--- io.ktor:ktor-network:2.3.8 (*)
+|    |         \--- io.ktor:ktor-utils:2.3.8 (*)
+|    \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
++--- io.ktor:ktor-serialization-kotlinx-json-jvm:2.3.8
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    +--- io.ktor:ktor-http:2.3.8 (*)
+|    +--- io.ktor:ktor-serialization-kotlinx:2.3.8
+|    |    \--- io.ktor:ktor-serialization-kotlinx-jvm:2.3.8
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22 (*)
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1 (*)
+|    |         +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.11
+|    |         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1 (*)
+|    |         +--- io.ktor:ktor-http:2.3.8 (*)
+|    |         +--- io.ktor:ktor-serialization:2.3.8 (*)
+|    |         +--- org.jetbrains.kotlinx:kotlinx-serialization-core:1.5.1 -> 1.6.2 (*)
+|    |         \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
+|    +--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1 -> 1.6.2 (*)
+|    \--- org.jetbrains.kotlin:kotlin-stdlib-common:1.8.22 -> 1.9.21 (*)
++--- org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2 (*)
++--- com.google.protobuf:protobuf-kotlin:3.25.3
+|    +--- com.google.protobuf:protobuf-java:3.25.3
+|    \--- org.jetbrains.kotlin:kotlin-stdlib:1.6.0 -> 1.9.21 (*)
++--- io.grpc:grpc-kotlin-stub:1.4.1
+|    +--- io.grpc:grpc-stub:1.57.2
+|    |    +--- io.grpc:grpc-api:1.57.2 -> 1.61.0
+|    |    |    +--- com.google.code.findbugs:jsr305:3.0.2
+|    |    |    \--- com.google.errorprone:error_prone_annotations:2.23.0
+|    |    \--- com.google.guava:guava:32.0.1-android
+|    |         +--- com.google.guava:failureaccess:1.0.1
+|    |         +--- com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava
+|    |         +--- com.google.code.findbugs:jsr305:3.0.2
+|    |         +--- org.checkerframework:checker-qual:3.33.0
+|    |         +--- com.google.errorprone:error_prone_annotations:2.18.0 -> 2.23.0
+|    |         \--- com.google.j2objc:j2objc-annotations:2.8
+|    \--- javax.annotation:javax.annotation-api:1.3.2
++--- io.grpc:grpc-protobuf:1.61.0
+|    +--- io.grpc:grpc-api:1.61.0 (*)
+|    +--- com.google.code.findbugs:jsr305:3.0.2
+|    +--- com.google.protobuf:protobuf-java:3.25.1 -> 3.25.3
+|    \--- com.google.api.grpc:proto-google-common-protos:2.29.0
+|         \--- com.google.protobuf:protobuf-java:3.25.1 -> 3.25.3
++--- io.grpc:grpc-netty-shaded:1.61.0
+|    \--- io.grpc:grpc-core:1.61.0
+|         \--- io.grpc:grpc-api:1.61.0 (*)
++--- software.amazon.awssdk:bom:2.24.12
+|    +--- software.amazon.awssdk:sqs:2.24.12 (c)
+|    +--- software.amazon.awssdk:aws-json-protocol:2.24.12 (c)
+|    +--- software.amazon.awssdk:protocol-core:2.24.12 (c)
+|    +--- software.amazon.awssdk:http-auth-aws:2.24.12 (c)
+|    +--- software.amazon.awssdk:sdk-core:2.24.12 (c)
+|    +--- software.amazon.awssdk:auth:2.24.12 (c)
+|    +--- software.amazon.awssdk:http-auth-spi:2.24.12 (c)
+|    +--- software.amazon.awssdk:http-auth:2.24.12 (c)
+|    +--- software.amazon.awssdk:identity-spi:2.24.12 (c)
+|    +--- software.amazon.awssdk:http-client-spi:2.24.12 (c)
+|    +--- software.amazon.awssdk:regions:2.24.12 (c)
+|    +--- software.amazon.awssdk:annotations:2.24.12 (c)
+|    +--- software.amazon.awssdk:utils:2.24.12 (c)
+|    +--- software.amazon.awssdk:aws-core:2.24.12 (c)
+|    +--- software.amazon.awssdk:metrics-spi:2.24.12 (c)
+|    +--- software.amazon.awssdk:json-utils:2.24.12 (c)
+|    +--- software.amazon.awssdk:third-party-jackson-core:2.24.12 (c)
+|    +--- software.amazon.awssdk:checksums-spi:2.24.12 (c)
+|    +--- software.amazon.awssdk:checksums:2.24.12 (c)
+|    \--- software.amazon.awssdk:profiles:2.24.12 (c)
++--- software.amazon.awssdk:sqs -> 2.24.12
+|    +--- software.amazon.awssdk:aws-json-protocol:2.24.12
+|    |    +--- software.amazon.awssdk:aws-core:2.24.12
+|    |    |    +--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    +--- software.amazon.awssdk:regions:2.24.12
+|    |    |    |    +--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    |    +--- software.amazon.awssdk:utils:2.24.12
+|    |    |    |    |    +--- org.reactivestreams:reactive-streams:1.0.4
+|    |    |    |    |    +--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    |    |    \--- org.slf4j:slf4j-api:1.7.30 -> 2.0.11
+|    |    |    |    +--- software.amazon.awssdk:sdk-core:2.24.12
+|    |    |    |    |    +--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    |    |    +--- software.amazon.awssdk:http-client-spi:2.24.12
+|    |    |    |    |    |    +--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    |    |    |    +--- software.amazon.awssdk:utils:2.24.12 (*)
+|    |    |    |    |    |    +--- software.amazon.awssdk:metrics-spi:2.24.12
+|    |    |    |    |    |    |    +--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    |    |    |    |    \--- software.amazon.awssdk:utils:2.24.12 (*)
+|    |    |    |    |    |    \--- org.reactivestreams:reactive-streams:1.0.4
+|    |    |    |    |    +--- software.amazon.awssdk:metrics-spi:2.24.12 (*)
+|    |    |    |    |    +--- software.amazon.awssdk:endpoints-spi:2.24.12
+|    |    |    |    |    |    \--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    |    |    +--- software.amazon.awssdk:http-auth-spi:2.24.12
+|    |    |    |    |    |    +--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    |    |    |    +--- software.amazon.awssdk:utils:2.24.12 (*)
+|    |    |    |    |    |    +--- software.amazon.awssdk:http-client-spi:2.24.12 (*)
+|    |    |    |    |    |    +--- org.reactivestreams:reactive-streams:1.0.4
+|    |    |    |    |    |    \--- software.amazon.awssdk:identity-spi:2.24.12
+|    |    |    |    |    |         +--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    |    |    |         \--- software.amazon.awssdk:utils:2.24.12 (*)
+|    |    |    |    |    +--- software.amazon.awssdk:http-auth-aws:2.24.12
+|    |    |    |    |    |    +--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    |    |    |    +--- software.amazon.awssdk:utils:2.24.12 (*)
+|    |    |    |    |    |    +--- software.amazon.awssdk:identity-spi:2.24.12 (*)
+|    |    |    |    |    |    +--- software.amazon.awssdk:http-client-spi:2.24.12 (*)
+|    |    |    |    |    |    +--- software.amazon.awssdk:http-auth-spi:2.24.12 (*)
+|    |    |    |    |    |    +--- software.amazon.awssdk:checksums-spi:2.24.12
+|    |    |    |    |    |    |    \--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    |    |    |    \--- software.amazon.awssdk:checksums:2.24.12
+|    |    |    |    |    |         +--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    |    |    |         \--- software.amazon.awssdk:checksums-spi:2.24.12 (*)
+|    |    |    |    |    +--- software.amazon.awssdk:checksums-spi:2.24.12 (*)
+|    |    |    |    |    +--- software.amazon.awssdk:checksums:2.24.12 (*)
+|    |    |    |    |    +--- software.amazon.awssdk:identity-spi:2.24.12 (*)
+|    |    |    |    |    +--- software.amazon.awssdk:utils:2.24.12 (*)
+|    |    |    |    |    +--- software.amazon.awssdk:profiles:2.24.12
+|    |    |    |    |    |    +--- software.amazon.awssdk:utils:2.24.12 (*)
+|    |    |    |    |    |    \--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    |    |    +--- org.slf4j:slf4j-api:1.7.30 -> 2.0.11
+|    |    |    |    |    \--- org.reactivestreams:reactive-streams:1.0.4
+|    |    |    |    +--- software.amazon.awssdk:profiles:2.24.12 (*)
+|    |    |    |    +--- software.amazon.awssdk:json-utils:2.24.12
+|    |    |    |    |    +--- software.amazon.awssdk:utils:2.24.12 (*)
+|    |    |    |    |    +--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    |    |    \--- software.amazon.awssdk:third-party-jackson-core:2.24.12
+|    |    |    |    \--- org.slf4j:slf4j-api:1.7.30 -> 2.0.11
+|    |    |    +--- software.amazon.awssdk:auth:2.24.12
+|    |    |    |    +--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    |    +--- software.amazon.awssdk:utils:2.24.12 (*)
+|    |    |    |    +--- software.amazon.awssdk:sdk-core:2.24.12 (*)
+|    |    |    |    +--- software.amazon.awssdk:identity-spi:2.24.12 (*)
+|    |    |    |    +--- software.amazon.awssdk:regions:2.24.12 (*)
+|    |    |    |    +--- software.amazon.awssdk:profiles:2.24.12 (*)
+|    |    |    |    +--- software.amazon.awssdk:http-client-spi:2.24.12 (*)
+|    |    |    |    +--- software.amazon.awssdk:json-utils:2.24.12 (*)
+|    |    |    |    +--- software.amazon.awssdk:http-auth-aws:2.24.12 (*)
+|    |    |    |    +--- software.amazon.awssdk:http-auth:2.24.12
+|    |    |    |    |    +--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    |    |    +--- software.amazon.awssdk:utils:2.24.12 (*)
+|    |    |    |    |    +--- software.amazon.awssdk:http-client-spi:2.24.12 (*)
+|    |    |    |    |    +--- software.amazon.awssdk:http-auth-spi:2.24.12 (*)
+|    |    |    |    |    \--- software.amazon.awssdk:identity-spi:2.24.12 (*)
+|    |    |    |    +--- software.amazon.awssdk:http-auth-spi:2.24.12 (*)
+|    |    |    |    \--- software.amazon.eventstream:eventstream:1.0.1
+|    |    |    +--- software.amazon.awssdk:http-auth-spi:2.24.12 (*)
+|    |    |    +--- software.amazon.awssdk:identity-spi:2.24.12 (*)
+|    |    |    +--- software.amazon.awssdk:http-auth:2.24.12 (*)
+|    |    |    +--- software.amazon.awssdk:profiles:2.24.12 (*)
+|    |    |    +--- software.amazon.awssdk:sdk-core:2.24.12 (*)
+|    |    |    +--- software.amazon.awssdk:http-client-spi:2.24.12 (*)
+|    |    |    +--- software.amazon.awssdk:metrics-spi:2.24.12 (*)
+|    |    |    +--- software.amazon.awssdk:endpoints-spi:2.24.12 (*)
+|    |    |    +--- software.amazon.awssdk:utils:2.24.12 (*)
+|    |    |    \--- software.amazon.eventstream:eventstream:1.0.1
+|    |    +--- software.amazon.awssdk:protocol-core:2.24.12
+|    |    |    +--- software.amazon.awssdk:sdk-core:2.24.12 (*)
+|    |    |    +--- software.amazon.awssdk:annotations:2.24.12
+|    |    |    +--- software.amazon.awssdk:utils:2.24.12 (*)
+|    |    |    \--- software.amazon.awssdk:http-client-spi:2.24.12 (*)
+|    |    +--- software.amazon.awssdk:sdk-core:2.24.12 (*)
+|    |    +--- software.amazon.awssdk:annotations:2.24.12
+|    |    +--- software.amazon.awssdk:http-client-spi:2.24.12 (*)
+|    |    +--- software.amazon.awssdk:utils:2.24.12 (*)
+|    |    +--- software.amazon.awssdk:third-party-jackson-core:2.24.12
+|    |    \--- software.amazon.awssdk:json-utils:2.24.12 (*)
+|    +--- software.amazon.awssdk:protocol-core:2.24.12 (*)
+|    +--- software.amazon.awssdk:http-auth-aws:2.24.12 (*)
+|    +--- software.amazon.awssdk:sdk-core:2.24.12 (*)
+|    +--- software.amazon.awssdk:auth:2.24.12 (*)
+|    +--- software.amazon.awssdk:http-auth-spi:2.24.12 (*)
+|    +--- software.amazon.awssdk:http-auth:2.24.12 (*)
+|    +--- software.amazon.awssdk:identity-spi:2.24.12 (*)
+|    +--- software.amazon.awssdk:http-client-spi:2.24.12 (*)
+|    +--- software.amazon.awssdk:regions:2.24.12 (*)
+|    +--- software.amazon.awssdk:annotations:2.24.12
+|    +--- software.amazon.awssdk:utils:2.24.12 (*)
+|    +--- software.amazon.awssdk:aws-core:2.24.12 (*)
+|    +--- software.amazon.awssdk:metrics-spi:2.24.12 (*)
+|    +--- software.amazon.awssdk:json-utils:2.24.12 (*)
+|    \--- software.amazon.awssdk:endpoints-spi:2.24.12 (*)
++--- com.opencsv:opencsv:5.9
+|    +--- org.apache.commons:commons-lang3:3.13.0
+|    +--- org.apache.commons:commons-text:1.11.0
+|    |    \--- org.apache.commons:commons-lang3:3.13.0
+|    +--- commons-beanutils:commons-beanutils:1.9.4
+|    |    +--- commons-logging:commons-logging:1.2
+|    |    \--- commons-collections:commons-collections:3.2.2
+|    \--- org.apache.commons:commons-collections4:4.4
++--- ch.qos.logback:logback-classic:1.4.14
+|    +--- ch.qos.logback:logback-core:1.4.14
+|    \--- org.slf4j:slf4j-api:2.0.7 -> 2.0.11
+\--- org.slf4j:slf4j-api:2.0.11
+
+(c) - A dependency constraint, not a dependency. The dependency affected by the constraint occurs elsewhere in the tree.
+(*) - Indicates repeated occurrences of a transitive dependency subtree. Gradle expands transitive dependency subtrees only once per project; repeat occurrences only display the root of the subtree, followed by this annotation.
+
+A web-based, searchable dependency report is available by adding the --scan option.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.5/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 457ms
+1 actionable task: 1 executed

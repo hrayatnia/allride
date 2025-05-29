@@ -3,6 +3,7 @@ plugins {
     kotlin("plugin.serialization") version "1.9.21"
     id("io.ktor.plugin") version "2.3.8"
     application
+    id("com.google.protobuf") version "0.9.4"
 }
 
 group = "me.rayatnia"
@@ -22,6 +23,10 @@ val logbackVersion = "1.4.14"
 val awsSdkVersion = "2.24.12"
 val opencsvVersion = "5.9"
 val mockkVersion = "1.13.9"
+val protobufVersion = "3.25.3"
+val grpcKotlinVersion = "1.4.1"
+val grpcJavaVersion = "1.61.0"
+val coroutinesVersion = "1.7.3"
 
 java {
     toolchain {
@@ -55,6 +60,12 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktorVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
     
+    // Protobuf and gRPC
+    implementation("com.google.protobuf:protobuf-kotlin:$protobufVersion")
+    implementation("io.grpc:grpc-kotlin-stub:$grpcKotlinVersion")
+    implementation("io.grpc:grpc-protobuf:$grpcJavaVersion")
+    implementation("io.grpc:grpc-netty-shaded:$grpcJavaVersion")
+    
     // AWS
     implementation(platform("software.amazon.awssdk:bom:$awsSdkVersion"))
     implementation("software.amazon.awssdk:sqs")
@@ -66,14 +77,52 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("org.slf4j:slf4j-api:2.0.11")
     
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    
     // Testing
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktorVersion")
     testImplementation("io.ktor:ktor-server-test-host:$ktorVersion")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
     testImplementation("io.mockk:mockk:$mockkVersion")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
+    testImplementation("io.grpc:grpc-testing:$grpcJavaVersion")
+    testImplementation("io.grpc:grpc-inprocess:$grpcJavaVersion")
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:$protobufVersion"
+    }
+    plugins {
+        this.create("grpckt") {
+            artifact = "io.grpc:protoc-gen-grpc-kotlin:$grpcKotlinVersion:jdk8@jar"
+        }
+        this.create("grpc") {
+            artifact = "io.grpc:protoc-gen-grpc-java:$grpcJavaVersion"
+        }
+    }
+    generateProtoTasks {
+        all().forEach { task ->
+            task.builtins {
+                kotlin {}
+                java {}
+            }
+            task.plugins {
+                this.create("grpckt")
+                this.create("grpc")
+            }
+        }
+    }
+}
+
+sourceSets.main {
+    kotlin.srcDir("build/generated/source/proto/main/kotlin")
+    kotlin.srcDir("build/generated/source/proto/main/grpckt")
+    java.srcDir("build/generated/source/proto/main/java")
+    java.srcDir("build/generated/source/proto/main/grpc")
 }

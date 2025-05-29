@@ -18,32 +18,39 @@ fun Application.configureRouting(
             post("/upload") {
                 val multipart = call.receiveMultipart()
                 var fileItem: PartData.FileItem? = null
+                var originalFileName: String? = null
                 
                 try {
                     multipart.forEachPart { part ->
                         when (part) {
-                            is PartData.FileItem -> fileItem = part
+                            is PartData.FileItem -> {
+                                fileItem = part
+                                originalFileName = part.originalFileName
+                            }
                             else -> part.dispose()
                         }
+                        if (fileItem != null) return@forEachPart
                     }
                     
-                    if (fileItem == null) {
-                        call.respond(HttpStatusCode.BadRequest, mapOf("error" to "No file uploaded"))
+                    if (fileItem == null || originalFileName == null) {
+                        call.respond(HttpStatusCode.BadRequest, mapOf("error" to "No file uploaded or filename missing"))
                         return@post
                     }
                     
-                    val result = uploadCommand.handle(fileItem!!)
-                    result.fold(
-                        onSuccess = { event ->
-                            call.respond(HttpStatusCode.Accepted, mapOf(
-                                "message" to "File uploaded successfully",
-                                "fileId" to event.aggregateId
-                            ))
-                        },
-                        onFailure = { error ->
-                            call.respond(HttpStatusCode.BadRequest, mapOf("error" to error.message))
-                        }
-                    )
+                    fileItem!!.streamProvider().use { inputStream ->
+                        val result = uploadCommand.handle(originalFileName!!, inputStream)
+                        result.fold(
+                            onSuccess = { event ->
+                                call.respond(HttpStatusCode.Accepted, mapOf(
+                                    "message" to "File uploaded successfully",
+                                    "fileId" to event.aggregateId
+                                ))
+                            },
+                            onFailure = { error ->
+                                call.respond(HttpStatusCode.BadRequest, mapOf("error" to error.message))
+                            }
+                        )
+                    }
                 } finally {
                     fileItem?.dispose?.invoke()
                 }

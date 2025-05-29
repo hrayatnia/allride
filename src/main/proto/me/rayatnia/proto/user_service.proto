@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package me.rayatnia.proto;
+
+import "google/protobuf/timestamp.proto"; // For LocalDateTime equivalent
+
+option java_package = "me.rayatnia.proto";
+option java_multiple_files = true;
+
+// Represents user data
+message User {
+    string id = 1; // UUID will be represented as a string
+    string first_name = 2;
+    string last_name = 3;
+    string email = 4;
+    google.protobuf.Timestamp created_at = 5; // For LocalDateTime
+}
+
+// Request for uploading user data (CSV)
+// For simplicity, this example assumes the client sends the file content directly.
+// In a real-world scenario, you might use streaming for large files.
+message UploadUserDataRequest {
+    bytes file_content = 1; // Raw bytes of the CSV file
+    string original_file_name = 2;
+}
+
+message UploadUserDataResponse {
+    string message = 1;
+    string file_id = 2; // Corresponds to event.aggregateId
+}
+
+// Request to get a user by ID
+message GetUserByIdRequest {
+    string id = 1;
+}
+
+// Request to get a user by email
+message GetUserByEmailRequest {
+    string email = 1;
+}
+
+// Response for getting a single user (could be empty if not found)
+// Alternatively, you could have a specific NotFound error in gRPC status
+message GetUserResponse {
+    User user = 1;
+}
+
+// Request to get all users (no parameters needed for this simple case)
+message GetAllUsersRequest {
+    // No fields needed
+}
+
+// Response for getting all users
+message GetAllUsersResponse {
+    repeated User users = 1;
+}
+
+// The gRPC service definition
+service UserService {
+    // Uploads user data from a CSV file
+    rpc UploadUserData (UploadUserDataRequest) returns (UploadUserDataResponse);
+
+    // Retrieves a user by their ID
+    rpc GetUserById (GetUserByIdRequest) returns (GetUserResponse);
+
+    // Retrieves a user by their email
+    rpc GetUserByEmail (GetUserByEmailRequest) returns (GetUserResponse);
+
+    // Retrieves all users
+    rpc GetAllUsers (GetAllUsersRequest) returns (GetAllUsersResponse);
+} 

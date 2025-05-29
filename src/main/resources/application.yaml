@@ -4,6 +4,15 @@ ktor:
             - me.rayatnia.ApplicationKt.module
     deployment:
         port: ${PORT:8080}
+        sslPort: ${SSL_PORT:8443}
+    security:
+        ssl:
+            keyStore: ${SSL_KEYSTORE_PATH:keystore.jks}
+            keyAlias: ${SSL_KEY_ALIAS:sampleAlias}
+            keyStorePassword: ${SSL_KEYSTORE_PASSWORD:changeit}
+            privateKeyPassword: ${SSL_PRIVATE_KEY_PASSWORD:changeit}
+    http:
+        version: 2.0
 
 database:
     url: "jdbc:postgresql://${POSTGRES_URL}/allride"
