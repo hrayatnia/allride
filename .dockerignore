@@ -1,0 +1,37 @@
+# Version control
+.git
+.gitignore
+
+# Build directories
+build/
+.gradle/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# Local environment
+.env
+*.env
+
+# Docker files
+.docker/
+docker-compose*.yml
+Dockerfile
+
+# Terraform
+terraform/
+.terraform/
+
+# Documentation
+README.md
+LICENSE
+
+# Logs
+*.log
+logs/
+
+# LocalStack
+localstack/
+.localstack/ 

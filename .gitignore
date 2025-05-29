@@ -47,12 +47,12 @@ logs/
 *.log
 
 # Docker
-Dockerfile
-.dockerignore
-docker-compose.yml
-.docker/
-docker-compose.override.yml
-postgres_data/
+# Dockerfile
+# .dockerignore
+# docker-compose.yml
+# .docker/
+# docker-compose.override.yml
+# postgres_data/
 
 # Secrets and sensitive data
 *.env
