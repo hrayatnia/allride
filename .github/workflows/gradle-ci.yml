@@ -28,7 +28,7 @@ jobs:
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
-          --health-retries 5
+          --health-retries 10
       
       memcached:
         image: memcached:1.6
@@ -47,7 +47,8 @@ jobs:
           --health-cmd "curl -f http://localhost:4566/_localstack/health || exit 1"
           --health-interval 10s
           --health-timeout 10s
-          --health-retries 18
+          --health-retries 30
+          --health-start-period 20s
 
     steps:
       - uses: actions/checkout@v4
@@ -59,7 +60,23 @@ jobs:
           distribution: 'temurin'
           
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: 8.5
+          
+      - name: Verify Gradle wrapper
+        run: |
+          gradle init --type basic --dsl kotlin --no-daemon || true
+          gradle wrapper --gradle-version 8.5
+          chmod +x ./gradlew
+        
+      - name: Install AWS CLI
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
+          aws --version
+          echo "AWS_PAGER=\"\"" >> $GITHUB_ENV
         
       - name: Initialize LocalStack
         run: |
@@ -71,6 +88,7 @@ jobs:
         
       - name: Upload Test Results
         if: always()
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: test-results
