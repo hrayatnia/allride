@@ -26,12 +26,12 @@ services:
         condition: service_healthy
 
   envoy:
-    image: envoyproxy/envoy:v1.28-latest
+    build:
+      context: ./docker/envoy
+      dockerfile: Dockerfile
     ports:
       - "8090:8090"  # gRPC-Web port
       - "9901:9901"  # Admin port
-    volumes:
-      - ./envoy.yaml:/etc/envoy/envoy.yaml
     depends_on:
       - app
 
