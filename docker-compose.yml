@@ -5,8 +5,10 @@ services:
     build: .
     ports:
       - "8080:8080"
+      - "50051:50051"  # Expose gRPC port
     environment:
       - PORT=8080
+      - GRPC_PORT=50051
       - AWS_REGION=${AWS_REGION:-us-east-1}
       - POSTGRES_URL=postgres:5432
       - POSTGRES_USER=postgres
@@ -22,6 +24,16 @@ services:
         condition: service_started
       localstack:
         condition: service_healthy
+
+  envoy:
+    image: envoyproxy/envoy:v1.28-latest
+    ports:
+      - "8090:8090"  # gRPC-Web port
+      - "9901:9901"  # Admin port
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+    depends_on:
+      - app
 
   postgres:
     image: postgres:17.1
