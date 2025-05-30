@@ -96,3 +96,8 @@ crash.log
 # LocalStack
 .localstack/
 localstack/data/
+
+# Auto-generated documentation
+docs/grpc-api.html
+docs/grpc-api.md
+docs/proto.desc
