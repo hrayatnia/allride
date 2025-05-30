@@ -15,6 +15,9 @@ application {
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://jitpack.io")
+    }
 }
 
 val ktorVersion = "2.3.8"
@@ -49,12 +52,6 @@ dependencies {
     implementation("io.ktor:ktor-server-status-pages-jvm:$ktorVersion")
     implementation("io.ktor:ktor-server-default-headers-jvm:$ktorVersion")
     implementation("io.ktor:ktor-server-host-common-jvm:$ktorVersion")
-    implementation("io.ktor:ktor-server-auth-jvm:$ktorVersion")
-    implementation("io.ktor:ktor-server-auth-jwt-jvm:$ktorVersion")
-    
-    // Ktor Client
-    implementation("io.ktor:ktor-client-core-jvm:$ktorVersion")
-    implementation("io.ktor:ktor-client-cio-jvm:$ktorVersion")
     
     // Ktor Serialization
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktorVersion")
@@ -116,6 +113,41 @@ protobuf {
                 this.create("grpckt")
                 this.create("grpc")
             }
+            // Generate documentation using protoc's built-in doc generator
+            task.generateDescriptorSet = true
+            task.descriptorSetOptions.includeSourceInfo = true
+            task.descriptorSetOptions.includeImports = true
+            task.descriptorSetOptions.path = "${buildDir}/resources/main/proto.desc"
+        }
+    }
+}
+
+// Task to generate documentation using protoc's built-in doc generator
+tasks.register<Exec>("generateGrpcDocs") {
+    dependsOn("generateProto")
+    
+    doFirst {
+        mkdir("docs")
+    }
+    
+    commandLine(
+        "protoc",
+        "--doc_out=docs",
+        "--doc_opt=markdown,grpc-api.md",
+        "--proto_path=${projectDir}/src/main/proto",
+        "${projectDir}/src/main/proto/me/rayatnia/proto/user_service.proto"
+    )
+    
+    // Also generate HTML documentation
+    doLast {
+        exec {
+            commandLine(
+                "protoc",
+                "--doc_out=docs",
+                "--doc_opt=html,grpc-api.html",
+                "--proto_path=${projectDir}/src/main/proto",
+                "${projectDir}/src/main/proto/me/rayatnia/proto/user_service.proto"
+            )
         }
     }
 }
