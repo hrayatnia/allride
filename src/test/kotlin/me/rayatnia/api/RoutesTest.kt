@@ -80,9 +80,9 @@ class UserServiceTest {
     @Test
     fun `should get all users`() = runTest {
         val csvContent = """
-            firstName,lastName,email
-            John,Doe,john.doe.all@example.com
-            Jane,Smith,jane.smith.all@example.com
+            firstName,lastName,email,phoneNumber,address,birthDate,status
+            John,Doe,john.doe.all@example.com,+1234567890,123 Main St,1990-01-01,active
+            Jane,Smith,jane.smith.all@example.com,+1987654321,456 Oak St,1991-02-02,active
         """.trimIndent()
         
         val request = UploadUserDataRequest.newBuilder()
@@ -106,8 +106,8 @@ class UserServiceTest {
         val userLastName = "DoeForId"
 
         val csvContent = """
-            firstName,lastName,email
-            $userFirstName,$userLastName,$userEmailForIdTest
+            firstName,lastName,email,phoneNumber,address,birthDate,status
+            $userFirstName,$userLastName,$userEmailForIdTest,+1234567890,123 Main St,1990-01-01,active
         """.trimIndent()
         
         val uploadRequest = UploadUserDataRequest.newBuilder()
@@ -157,8 +157,8 @@ class UserServiceTest {
         val userLastName = "DoeForEmail"
 
         val csvContent = """
-            firstName,lastName,email
-            $userFirstName,$userLastName,$userEmailForEmailTest
+            firstName,lastName,email,phoneNumber,address,birthDate,status
+            $userFirstName,$userLastName,$userEmailForEmailTest,+1234567890,123 Main St,1990-01-01,active
         """.trimIndent()
         
         val uploadRequest = UploadUserDataRequest.newBuilder()

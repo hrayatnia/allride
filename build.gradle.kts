@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "1.9.21"
     kotlin("plugin.serialization") version "1.9.21"
     id("io.ktor.plugin") version "2.3.8"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
     application
     id("com.google.protobuf") version "0.9.4"
 }
@@ -10,7 +11,7 @@ group = "me.rayatnia"
 version = "0.0.1"
 
 application {
-    mainClass.set("io.ktor.server.netty.EngineMain")
+    mainClass.set("me.rayatnia.ApplicationKt")
 }
 
 repositories {
@@ -52,6 +53,7 @@ dependencies {
     implementation("io.ktor:ktor-server-status-pages-jvm:$ktorVersion")
     implementation("io.ktor:ktor-server-default-headers-jvm:$ktorVersion")
     implementation("io.ktor:ktor-server-host-common-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-call-logging-jvm:$ktorVersion")
     
     // Ktor Serialization
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktorVersion")
@@ -72,7 +74,7 @@ dependencies {
     
     // Logging
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
-    implementation("org.slf4j:slf4j-api:2.0.11")
+    implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
     
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
@@ -113,41 +115,10 @@ protobuf {
                 this.create("grpckt")
                 this.create("grpc")
             }
-            // Generate documentation using protoc's built-in doc generator
             task.generateDescriptorSet = true
             task.descriptorSetOptions.includeSourceInfo = true
             task.descriptorSetOptions.includeImports = true
             task.descriptorSetOptions.path = "${buildDir}/resources/main/proto.desc"
-        }
-    }
-}
-
-// Task to generate documentation using protoc's built-in doc generator
-tasks.register<Exec>("generateGrpcDocs") {
-    dependsOn("generateProto")
-    
-    doFirst {
-        mkdir("docs")
-    }
-    
-    commandLine(
-        "protoc",
-        "--doc_out=docs",
-        "--doc_opt=markdown,grpc-api.md",
-        "--proto_path=${projectDir}/src/main/proto",
-        "${projectDir}/src/main/proto/me/rayatnia/proto/user_service.proto"
-    )
-    
-    // Also generate HTML documentation
-    doLast {
-        exec {
-            commandLine(
-                "protoc",
-                "--doc_out=docs",
-                "--doc_opt=html,grpc-api.html",
-                "--proto_path=${projectDir}/src/main/proto",
-                "${projectDir}/src/main/proto/me/rayatnia/proto/user_service.proto"
-            )
         }
     }
 }
@@ -157,4 +128,21 @@ sourceSets.main {
     kotlin.srcDir("build/generated/source/proto/main/grpckt")
     java.srcDir("build/generated/source/proto/main/java")
     java.srcDir("build/generated/source/proto/main/grpc")
+}
+
+tasks.jar {
+    enabled = false
+}
+
+tasks.shadowJar {
+    dependsOn("generateProto", "generateTestProto")
+    manifest {
+        attributes["Main-Class"] = "me.rayatnia.ApplicationKt"
+    }
+    mergeServiceFiles()
+    archiveClassifier.set("")
+}
+
+tasks.build {
+    dependsOn(tasks.shadowJar)
 }

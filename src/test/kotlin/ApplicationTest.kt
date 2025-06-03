@@ -5,6 +5,11 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.server.config.*
 import io.ktor.server.testing.*
+import me.rayatnia.application.commands.UploadUserDataCommand
+import me.rayatnia.application.queries.GetUserDataQuery
+import me.rayatnia.infrastructure.messaging.SqsEventPublisher
+import me.rayatnia.infrastructure.persistence.InMemoryUserDataRepository
+import software.amazon.awssdk.services.sqs.SqsClient
 import java.io.File
 import kotlin.test.Test
 import kotlin.test.assertEquals

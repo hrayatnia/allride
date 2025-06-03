@@ -13,14 +13,33 @@ message User {
     string first_name = 2;
     string last_name = 3;
     string email = 4;
-    google.protobuf.Timestamp created_at = 5; // For LocalDateTime
+    string phone_number = 5;
+    string address = 6;
+    string birth_date = 7;
+    string status = 8;
+    google.protobuf.Timestamp created_at = 9; // For LocalDateTime
 }
 
-// Request for uploading user data (CSV)
-// For simplicity, this example assumes the client sends the file content directly.
-// In a real-world scenario, you might use streaming for large files.
+// Validation related messages
+message ValidationError {
+    int32 row = 1;
+    repeated string errors = 2;
+}
+
+message ValidateUserDataRequest {
+    bytes file_content = 1;
+    string original_file_name = 2;
+}
+
+message ValidateUserDataResponse {
+    repeated ValidationError errors = 1;
+    bool is_valid = 2;
+    string message = 3;
+}
+
+// Upload related messages
 message UploadUserDataRequest {
-    bytes file_content = 1; // Raw bytes of the CSV file
+    bytes file_content = 1;
     string original_file_name = 2;
 }
 
@@ -29,12 +48,11 @@ message UploadUserDataResponse {
     string file_id = 2; // Corresponds to event.aggregateId
 }
 
-// Request to get a user by ID
+// Get user related messages
 message GetUserByIdRequest {
     string id = 1;
 }
 
-// Request to get a user by email
 message GetUserByEmailRequest {
     string email = 1;
 }
@@ -57,6 +75,9 @@ message GetAllUsersResponse {
 
 // The gRPC service definition
 service UserService {
+    // Validates user data from a CSV file
+    rpc ValidateUserData (ValidateUserDataRequest) returns (ValidateUserDataResponse);
+    
     // Uploads user data from a CSV file
     rpc UploadUserData (UploadUserDataRequest) returns (UploadUserDataResponse);
 
