@@ -1,6 +1,14 @@
-# User Data Import Service
+# AllRide Backend Service
 
-A service that handles CSV file uploads containing user data, processes them asynchronously using AWS SQS, and provides a REST API for querying the processed data.
+A Kotlin-based backend service that provides gRPC endpoints for user management and asynchronous CSV processing capabilities. This service is part of the AllRide User Management System.
+
+## Quick Start
+
+### Using Docker (Recommended)
+The easiest way to run this service is through Docker, which is set up in the parent repository.
+See the main repository's README for Docker setup instructions.
+
+### Manual Setup
 
 ## Architecture
 
@@ -157,4 +165,121 @@ The service implements robust error handling:
    - Add caching for queries
    - Implement batch processing for large files
    - Add pagination for query endpoints
+
+## Project Structure
+
+```
+src/
+├── main/
+│   ├── kotlin/
+│   │   └── me/rayatnia/
+│   │       ├── api/           # gRPC service implementations
+│   │       ├── application/   # Application services
+│   │       ├── domain/        # Domain models and logic
+│   │       └── infrastructure/# External services integration
+│   └── proto/                 # Protocol buffer definitions
+└── test/                      # Test cases
+```
+
+## Development
+
+### Building
+```bash
+./gradlew build
+```
+
+### Running Tests
+```bash
+./gradlew test
+```
+
+### Generating Protocol Buffers
+```bash
+./gradlew generateProto
+```
+
+## Docker Support
+
+### Building the Image
+```bash
+docker build -t allride-backend .
+```
+
+### Running with Docker
+```bash
+docker run -p 50051:50051 allride-backend
+```
+
+## API Documentation
+
+### Generating Documentation
+```bash
+./gradlew generateProtoDocs
+```
+
+Documentation will be available in:
+- HTML: `docs/grpc-api.html`
+- Markdown: `docs/grpc-api.md`
+
+## Infrastructure
+
+### AWS Services
+- SQS for message queuing
+- Optional: S3 for file storage
+- Optional: RDS for persistent storage
+
+### Local Development
+Use LocalStack for AWS service emulation:
+```bash
+./init-localstack.sh
+```
+
+## Monitoring
+
+### Health Checks
+- gRPC health check: port 50051
+- HTTP health check: `/health`
+
+### Metrics
+- JVM metrics
+- Custom business metrics
+- gRPC server metrics
+
+## Security
+
+### SSL/TLS
+- Configure using `keystore.jks`
+- Set keystore password in environment
+
+### Authentication
+- gRPC interceptors for auth
+- JWT token validation
+
+## Troubleshooting
+
+### Common Issues
+
+1. LocalStack Connection
+   ```bash
+   aws --endpoint-url=http://localhost:4566 sqs list-queues
+   ```
+
+2. Memcached Connection
+   ```bash
+   echo 'stats' | nc localhost 11211
+   ```
+
+3. Port Conflicts
+   ```bash
+   lsof -i :50051
+   ```
+
+## Contributing
+
+1. Create a feature branch
+2. Add tests
+3. Update documentation
+4. Submit a pull request
+
+See the main repository's CONTRIBUTING.md for more details.
 
