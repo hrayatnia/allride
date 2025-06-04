@@ -58,9 +58,29 @@ logs/
 *.env
 *.pem
 *.key
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.cer
+*.crt
+*secret*
+*password*
+*token*
+keystore.*
+truststore.*
+.aws/
+aws.config
+aws.credentials
+credentials.json
+application-*.yml
+application-*.properties
+!application-example.yml
+!application-example.properties
 
 # Local configuration
 application-local.*
+local.properties
 
 # OS generated files
 *~
@@ -75,10 +95,14 @@ application-local.*
 *.pyc
 *.pyo
 
-# Test results
+# Test results and data
 **/target/test-results/
 **/build/test-results/
 **/build/reports/
+uploads/*.csv
+*test*.csv
+*test*.json
+*_test.*
 
 # Rider
 .idea.rider*/
