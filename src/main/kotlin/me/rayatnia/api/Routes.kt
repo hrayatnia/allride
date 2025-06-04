@@ -8,70 +8,107 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import me.rayatnia.application.commands.UploadUserDataCommand
 import me.rayatnia.application.queries.GetUserDataQuery
+import utils.Logger
 
 fun Application.configureRouting(
     uploadCommand: UploadUserDataCommand,
     getUserDataQuery: GetUserDataQuery
 ) {
+    val logger = Logger.withContext(mapOf("component" to "Routes"))
+
     routing {
-        route("/api/v1/users") {
-            post("/upload") {
+        get("/") {
+            call.respondText("Hello World! Ktor HTTP/2 server running.")
+        }
+
+        post("/api/users/upload") {
+            logger.info("Received file upload request")
+            
+            try {
                 val multipart = call.receiveMultipart()
-                var fileItem: PartData.FileItem? = null
-                
-                try {
-                    multipart.forEachPart { part ->
-                        when (part) {
-                            is PartData.FileItem -> fileItem = part
-                            else -> part.dispose()
-                        }
+                multipart.forEachPart { part ->
+                    if (part is PartData.FileItem) {
+                        logger.debug("Processing uploaded file", 
+                            "originalFileName" to part.originalFileName,
+                            "contentType" to part.contentType
+                        )
+                        
+                        val originalFileName = part.originalFileName ?: "unknown.csv"
+                        val result = uploadCommand.handle(originalFileName, part.streamProvider())
+                        
+                        result.fold(
+                            onSuccess = { event ->
+                                logger.info("File upload successful", "fileId" to event.aggregateId)
+                                call.respond(HttpStatusCode.OK, mapOf(
+                                    "message" to "File uploaded successfully",
+                                    "fileId" to event.aggregateId
+                                ))
+                            },
+                            onFailure = { e ->
+                                logger.error("Failed to process file upload", e)
+                                call.respond(HttpStatusCode.BadRequest, mapOf(
+                                    "message" to "Failed to process file",
+                                    "error" to e.message
+                                ))
+                            }
+                        )
                     }
-                    
-                    if (fileItem == null) {
-                        call.respond(HttpStatusCode.BadRequest, mapOf("error" to "No file uploaded"))
-                        return@post
-                    }
-                    
-                    val result = uploadCommand.handle(fileItem!!)
-                    result.fold(
-                        onSuccess = { event ->
-                            call.respond(HttpStatusCode.Accepted, mapOf(
-                                "message" to "File uploaded successfully",
-                                "fileId" to event.aggregateId
-                            ))
-                        },
-                        onFailure = { error ->
-                            call.respond(HttpStatusCode.BadRequest, mapOf("error" to error.message))
-                        }
-                    )
-                } finally {
-                    fileItem?.dispose?.invoke()
+                    part.dispose()
                 }
+            } catch (e: Exception) {
+                logger.error("Failed to process file upload", e)
+                call.respond(HttpStatusCode.InternalServerError, mapOf(
+                    "message" to "Failed to process file",
+                    "error" to e.message
+                ))
             }
+        }
+
+        get("/api/users") {
+            logger.info("Received request to get all users")
             
-            get {
+            try {
                 val users = getUserDataQuery.getAll()
+                logger.info("Retrieved users successfully", "count" to users.size)
                 call.respond(users)
+            } catch (e: Exception) {
+                logger.error("Failed to retrieve users", e)
+                call.respond(HttpStatusCode.InternalServerError, mapOf(
+                    "message" to "Failed to retrieve users",
+                    "error" to e.message
+                ))
             }
+        }
+
+        get("/api/users/{id}") {
+            val id = call.parameters["id"]
+            logger.info("Received request to get user by ID", "userId" to id)
             
-            get("/{id}") {
-                val id = call.parameters["id"] ?: throw IllegalArgumentException("User ID is required")
+            try {
+                if (id == null) {
+                    logger.warn("User ID not provided")
+                    call.respond(HttpStatusCode.BadRequest, mapOf(
+                        "message" to "User ID is required"
+                    ))
+                    return@get
+                }
+
                 val user = getUserDataQuery.getById(id)
                 if (user != null) {
+                    logger.info("Retrieved user successfully", "userId" to id)
                     call.respond(user)
                 } else {
-                    call.respond(HttpStatusCode.NotFound)
+                    logger.warn("User not found", "userId" to id)
+                    call.respond(HttpStatusCode.NotFound, mapOf(
+                        "message" to "User not found"
+                    ))
                 }
-            }
-            
-            get("/email/{email}") {
-                val email = call.parameters["email"] ?: throw IllegalArgumentException("Email is required")
-                val user = getUserDataQuery.getByEmail(email)
-                if (user != null) {
-                    call.respond(user)
-                } else {
-                    call.respond(HttpStatusCode.NotFound)
-                }
+            } catch (e: Exception) {
+                logger.error("Failed to retrieve user", e, "userId" to id)
+                call.respond(HttpStatusCode.InternalServerError, mapOf(
+                    "message" to "Failed to retrieve user",
+                    "error" to e.message
+                ))
             }
         }
     }

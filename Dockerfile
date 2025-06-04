@@ -3,19 +3,20 @@ FROM gradle:8.5-jdk17 AS build
 WORKDIR /app
 COPY . .
 
-# Build the application
-RUN gradle installDist --no-daemon
+# Build the application with shadowJar
+RUN gradle shadowJar --no-daemon
 
 FROM openjdk:17-slim
 
 WORKDIR /app
-COPY --from=build /app/build/install/allride ./allride
+COPY --from=build /app/build/libs/allride-all.jar ./app.jar
 
 # Create a non-root user
 RUN useradd -m appuser && chown -R appuser:appuser /app
 USER appuser
 
-WORKDIR /app/allride
+# Expose both HTTP and gRPC ports
 EXPOSE 8080
+EXPOSE 50051
 
-ENTRYPOINT ["./bin/allride"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]

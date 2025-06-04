@@ -10,7 +10,11 @@ class UserDataTest {
         val row = mapOf(
             "firstName" to "John",
             "lastName" to "Doe",
-            "email" to "john.doe@example.com"
+            "email" to "john.doe@example.com",
+            "phoneNumber" to "+1234567890",
+            "address" to "123 Main St",
+            "birthDate" to "1990-01-01",
+            "status" to "active"
         )
         
         val result = UserData.fromCsvRow(row)
@@ -20,6 +24,10 @@ class UserDataTest {
         assertEquals("John", userData.firstName)
         assertEquals("Doe", userData.lastName)
         assertEquals("john.doe@example.com", userData.email)
+        assertEquals("+1234567890", userData.phoneNumber)
+        assertEquals("123 Main St", userData.address)
+        assertEquals("1990-01-01", userData.birthDate)
+        assertEquals("active", userData.status)
     }
     
     @Test
@@ -27,7 +35,7 @@ class UserDataTest {
         val row = mapOf(
             "firstName" to "John",
             "lastName" to "Doe"
-            // email is missing
+            // email and other required fields are missing
         )
         
         val result = UserData.fromCsvRow(row)

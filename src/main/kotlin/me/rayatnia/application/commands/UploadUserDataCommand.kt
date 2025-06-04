@@ -1,7 +1,7 @@
 package me.rayatnia.application.commands
 
-import io.ktor.http.content.*
 import java.io.File
+import java.io.InputStream
 import java.util.UUID
 import me.rayatnia.domain.events.FileUploadedEvent
 import me.rayatnia.infrastructure.messaging.EventPublisher
@@ -14,27 +14,26 @@ class UploadUserDataCommand(
         File(uploadDir).mkdirs()
     }
     
-    suspend fun handle(fileItem: PartData.FileItem): Result<FileUploadedEvent> = runCatching {
-        val fileName = fileItem.originalFileName ?: throw IllegalArgumentException("Original file name is required")
-        if (!fileName.endsWith(".csv")) {
-            throw IllegalArgumentException("Only CSV files are allowed")
+    suspend fun handle(originalFileName: String, inputStream: InputStream): Result<FileUploadedEvent> = runCatching {
+        if (!originalFileName.endsWith(".csv", ignoreCase = true)) {
+            throw IllegalArgumentException("Only CSV files are allowed. Original name: $originalFileName")
         }
         
         val fileId = UUID.randomUUID().toString()
-        val file = File(uploadDir, "$fileId.csv")
+        val savedFile = File(uploadDir, "$fileId-${originalFileName.takeLast(10)}")
         
-        fileItem.streamProvider().use { input ->
-            file.outputStream().use { output ->
+        inputStream.use { input ->
+            savedFile.outputStream().use { output ->
                 input.copyTo(output)
             }
         }
         
         val event = FileUploadedEvent(
             aggregateId = fileId,
-            filePath = file.absolutePath,
-            originalFileName = fileName,
-            contentType = fileItem.contentType?.toString() ?: "text/csv",
-            fileSize = file.length()
+            filePath = savedFile.absolutePath,
+            originalFileName = originalFileName,
+            contentType = "text/csv",
+            fileSize = savedFile.length()
         )
         
         eventPublisher.publish(event)
