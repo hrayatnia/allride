@@ -19,6 +19,9 @@ import me.rayatnia.infrastructure.messaging.SqsEventPublisher
 import me.rayatnia.infrastructure.persistence.InMemoryUserDataRepository
 import me.rayatnia.infrastructure.workers.CsvProcessor
 import software.amazon.awssdk.services.sqs.SqsClient
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider
+import software.amazon.awssdk.regions.Region
 import kotlinx.serialization.json.Json
 import java.util.concurrent.TimeUnit
 import java.io.File
@@ -28,13 +31,58 @@ fun main() {
     Logger.info("Starting AllRide application...")
     
     try {
-        embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
+        // Initialize your repositories and services
+        val awsEndpoint = System.getenv("AWS_ENDPOINT_URL") ?: "http://localhost:4566"
+        val awsRegion = System.getenv("AWS_REGION") ?: "us-east-1"
+        val awsAccessKey = System.getenv("AWS_ACCESS_KEY_ID") ?: "test"
+        val awsSecretKey = System.getenv("AWS_SECRET_ACCESS_KEY") ?: "test"
+        
+        val credentials = AwsBasicCredentials.create(awsAccessKey, awsSecretKey)
+        val sqsClient = SqsClient.builder()
+            .endpointOverride(java.net.URI.create(awsEndpoint))
+            .region(Region.of(awsRegion))
+            .credentialsProvider(StaticCredentialsProvider.create(credentials))
+            .build()
+        
+        // Use the correct queue URL format for LocalStack
+        val queueUrl = "$awsEndpoint/000000000000/allride-main-queue"
+        val eventPublisher = SqsEventPublisher(sqsClient, queueUrl)
+        val uploadCommand = UploadUserDataCommand(eventPublisher)
+        val userRepository = InMemoryUserDataRepository()
+        val getUserDataQuery = GetUserDataQuery(userRepository)
+        
+        // Start gRPC server
+        val grpcPort = 50051 // Use the standard gRPC port
+        val grpcServer = NettyServerBuilder.forPort(grpcPort)
+            .addService(UserServiceImpl(uploadCommand, getUserDataQuery))
+            .build()
+        
+        grpcServer.start()
+        Logger.info("gRPC server started on port $grpcPort")
+
+        // Start HTTP server
+        val httpServer = embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
             Logger.info("Configuring application modules...")
             module()
             Logger.info("Application modules configured successfully")
-        }.start(wait = true)
+        }
+        
+        httpServer.start(wait = false)
+        Logger.info("HTTP server started on port 8080")
+
+        // Add shutdown hook
+        Runtime.getRuntime().addShutdownHook(Thread {
+            Logger.info("Shutting down servers...")
+            grpcServer.shutdown()
+            httpServer.stop(1, 5, TimeUnit.SECONDS)
+            sqsClient.close()
+        })
+
+        // Keep the application running
+        grpcServer.awaitTermination()
+        
     } catch (e: Exception) {
-        Logger.error("Failed to start application", e)
+        Logger.error("Error starting application", e)
         throw e
     }
 }
@@ -61,6 +109,10 @@ fun Application.module() {
         routing {
             get("/") {
                 call.respondText("Hello World! Ktor HTTP/2 server running.")
+            }
+            
+            get("/health") {
+                call.respondText("OK")
             }
         }
         logger.info("Routing configured successfully")
